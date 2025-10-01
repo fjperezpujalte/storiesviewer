@@ -1,3 +1,6 @@
-from fastapi import FastAPI
+from storiesviewer_backend.restAPI.rest_factory import RestFactory
+from storiesviewer_backend.restAPI.rest_interface import RestInterface
 
-app = FastAPI()
+if __name__ == "__main__":
+    rest : RestInterface = RestFactory.create_restapi()
+    rest.run()
