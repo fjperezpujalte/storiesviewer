@@ -7,7 +7,7 @@ from storiesviewer_backend.model import Keypoint, Map, MapCreate, Story
 
 class RestInterface(ABC):
     """Interface for the REST API service"""
-
+    
     @abstractmethod
     async def root():
         "TODO"

@@ -1,6 +1,6 @@
 from storiesviewer_backend.restAPI.rest_fastapi import RestFastAPI
 from storiesviewer_backend.restAPI.rest_interface import RestInterface
-
+from storiesviewer_backend.config import settings
 
 class RestFactory:
     """Factory class to create storage instances based on configuration"""
@@ -8,7 +8,7 @@ class RestFactory:
     @staticmethod
     async def create_restapi(rest_type: str = None) -> RestInterface:
         if rest_type is None:
-            rest_type = settings.STORAGE_TYPE
+            rest_type = settings.API_TYPE
         
         if rest_type.lower() == "fastapi":
             rest = RestFastAPI()

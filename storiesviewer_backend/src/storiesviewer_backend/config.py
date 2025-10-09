@@ -5,7 +5,7 @@ class Settings:
     """Application configuration settings"""
     
     # Storage configuration
-    STORAGE_TYPE: Literal["file", "mongodb"] = os.getenv("STORAGE_TYPE", "file")
+    STORAGE_TYPE: Literal["file", "mongodb"] = os.getenv("STORAGE_TYPE", "mongodb")
     
     # MongoDB configuration
     MONGODB_URL: str = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
@@ -20,5 +20,6 @@ class Settings:
     # API configuration
     API_HOST: str = os.getenv("API_HOST", "0.0.0.0")
     API_PORT: int = int(os.getenv("API_PORT", "8000"))
+    API_TYPE : Literal["fastapi"] = os.getenv("API_TYPE", "fastapi")
 
 settings = Settings()
