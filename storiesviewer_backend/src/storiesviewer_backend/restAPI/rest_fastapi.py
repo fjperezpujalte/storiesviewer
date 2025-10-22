@@ -24,7 +24,7 @@ class RestFastAPI(RestInterface):
     async def create_map(map_data: MapCreate):
         """Create a new map"""
         try:
-            map_obj = storage.create_map(map_data)
+            map_obj = await storage.create_map(map_data)
             return map_obj
         except Exception as e:
             raise HTTPException(status_code=400, detail=str(e))
@@ -32,12 +32,12 @@ class RestFastAPI(RestInterface):
     @staticmethod
     async def get_all_maps():
         """Get all maps"""
-        return storage.get_all_maps()
+        return await storage.get_all_maps()
 
     @staticmethod
     async def get_map(map_id: str):
         """Get a specific map by ID"""
-        map_obj = storage.get_map(map_id)
+        map_obj = await storage.get_map(map_id)
         if not map_obj:
             raise HTTPException(status_code=404, detail="Map not found")
         return map_obj
@@ -45,7 +45,7 @@ class RestFastAPI(RestInterface):
     @staticmethod
     async def delete_map(map_id: str):
         """Delete a map by ID"""
-        success = storage.delete_map(map_id)
+        success = await storage.delete_map(map_id)
         if not success:
             raise HTTPException(status_code=404, detail="Map not found")
         return {"message": "Map deleted successfully"}
@@ -55,7 +55,7 @@ class RestFastAPI(RestInterface):
     @staticmethod
     async def add_keypoint(map_id: str, keypoint: Keypoint):
         """Add a keypoint to a map"""
-        success = storage.add_keypoint(map_id, keypoint)
+        success = await storage.add_keypoint(map_id, keypoint)
         if not success:
             raise HTTPException(status_code=404, detail="Map not found")
         return {"message": "Keypoint added successfully"}
@@ -63,7 +63,7 @@ class RestFastAPI(RestInterface):
     @staticmethod
     async def delete_keypoint(map_id: str, keypoint_id: str):
         """Delete a keypoint from a map"""
-        success = storage.delete_keypoint(map_id, keypoint_id)
+        success = await storage.delete_keypoint(map_id, keypoint_id)
         if not success:
             raise HTTPException(status_code=404, detail="Map or keypoint not found")
         return {"message": "Keypoint deleted successfully"}
@@ -72,7 +72,7 @@ class RestFastAPI(RestInterface):
     @staticmethod
     async def add_story(map_id: str, story: Story):
         """Add a story to a map"""
-        success = storage.add_story(map_id, story)
+        success = await storage.add_story(map_id, story)
         if not success:
             raise HTTPException(status_code=404, detail="Map not found")
         return {"message": "Story added successfully"}
@@ -80,7 +80,7 @@ class RestFastAPI(RestInterface):
     @staticmethod
     async def delete_story(map_id: str, story_id: str):
         """Delete a story from a map"""
-        success = storage.delete_story(map_id, story_id)
+        success = await storage.delete_story(map_id, story_id)
         if not success:
             raise HTTPException(status_code=404, detail="Map or story not found")
         return {"message": "Story deleted successfully"}
